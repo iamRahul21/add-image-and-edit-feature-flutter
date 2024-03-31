@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'image_editing.dart';
+import 'image_editing_page.dart';
 
 Future<void> showImagePickerDialog(
     BuildContext context, Function(String) onImageSelected) async {
@@ -12,18 +12,23 @@ Future<void> showImagePickerDialog(
   if (pickedFile != null) {
     // Handle the picked image file
     print('Image picked: ${pickedFile.path}');
-    onImageSelected(pickedFile.path); // Pass the selected image file path to the callback function
+    onImageSelected(pickedFile
+        .path); // Pass the selected image file path to the callback function
 
     // Navigate to the ImageEditingPage and pass the selected image path as a parameter
-    Navigator.push(
+    final croppedImagePath = await Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => ImageEditingPage(imagePath: pickedFile.path),
       ),
     );
+
+    if (croppedImagePath != null) {
+      // Pass the cropped image path back to the caller
+      onImageSelected(croppedImagePath);
+    }
   } else {
     // User canceled image picking
     print('User canceled image picking');
   }
 }
-

@@ -71,36 +71,39 @@ class _ImageEditingPageState extends State<ImageEditingPage> {
   }
 
   Future<void> cropImage() async {
-    try {
-      final croppedFile = await ImageCropper()
-          .cropImage(sourcePath: widget.imagePath, aspectRatioPresets: [
+  try {
+    final croppedFile = await ImageCropper().cropImage(
+      sourcePath: widget.imagePath,
+      aspectRatioPresets: [
         CropAspectRatioPreset.square,
         CropAspectRatioPreset.ratio3x2,
         CropAspectRatioPreset.original,
         CropAspectRatioPreset.ratio4x3,
         CropAspectRatioPreset.ratio16x9
-      ], uiSettings: [
+      ],
+      uiSettings: [
         AndroidUiSettings(
-          toolbarTitle: 'Crop',
-          toolbarColor: Colors.deepOrange,
-          toolbarWidgetColor: Colors.white,
-          initAspectRatio: CropAspectRatioPreset.original,
-          lockAspectRatio: false,
-        ),
-        IOSUiSettings(
-          minimumAspectRatio: 1.0,
-        ),
-      ]);
+        toolbarTitle: 'Crop',
+        toolbarColor: Colors.deepOrange,
+        toolbarWidgetColor: Colors.white,
+        initAspectRatio: CropAspectRatioPreset.original,
+        lockAspectRatio: false,
+      ),
+      IOSUiSettings(
+        minimumAspectRatio: 1.0,
+      ),
+      ]
+    );
 
-      if (croppedFile != null) {
-        setState(() {
-          rotatedImage = Image.file(File(croppedFile.path));
-        });
-      }
-    } catch (e) {
-      print('Error cropping image: $e');
+    if (croppedFile != null) {
+      // Pass the cropped image path back to the home page
+      Navigator.pop(context, croppedFile.path);
     }
+  } catch (e) {
+    print('Error cropping image: $e');
   }
+}
+
 
   Uint8List rotateImage(Image image, int angle) {
     final img.Image imgSrc =
