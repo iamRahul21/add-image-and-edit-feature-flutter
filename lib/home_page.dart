@@ -3,12 +3,15 @@ import 'image_picker_dialog.dart';
 import 'dart:io';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
   final String title;
+  final void Function(String) navigateToUploadPopup;
+
+  const MyHomePage({super.key, required this.title, required this.navigateToUploadPopup});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
+
 
 class _MyHomePageState extends State<MyHomePage> {
   String _selectedImagePath = ''; // Store the selected image file path
@@ -80,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Container(
                 width: double.infinity,
-                margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+                margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20),

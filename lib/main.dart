@@ -17,7 +17,29 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Add Image/Icon'),
+      initialRoute: '/',
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case '/':
+            return MaterialPageRoute(
+              builder: (context) => MyHomePage(
+                title: 'Add Image/Icon',
+                navigateToUploadPopup: (imagePath) {
+                  // Handle navigateToUploadPopup action here
+                },
+              ),
+            );
+          default:
+            return MaterialPageRoute(
+              builder: (context) => MyHomePage(
+                title: 'Add Image/Icon',
+                navigateToUploadPopup: (imagePath) {
+                  // Handle navigateToUploadPopup action here
+                },
+              ),
+            );
+        }
+      },
     );
   }
 }
