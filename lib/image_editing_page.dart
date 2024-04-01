@@ -1,4 +1,4 @@
-// ignore_for_file: library_private_types_in_public_api, use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously
 
 import 'dart:io';
 import 'dart:typed_data';
@@ -10,7 +10,7 @@ import 'custom_popup.dart'; // Import the CustomPopup widget
 class ImageEditingPage extends StatefulWidget {
   final String imagePath;
 
-  const ImageEditingPage({super.key, required this.imagePath});
+  const ImageEditingPage({Key? key, required this.imagePath}) : super(key: key);
 
   @override
   _ImageEditingPageState createState() => _ImageEditingPageState();
@@ -82,16 +82,18 @@ class _ImageEditingPageState extends State<ImageEditingPage> {
           CropAspectRatioPreset.ratio4x3,
           CropAspectRatioPreset.ratio16x9
         ],
-        uiSettings: [AndroidUiSettings(
-          toolbarTitle: 'Crop',
-          toolbarColor: Colors.deepOrange,
-          toolbarWidgetColor: Colors.white,
-          initAspectRatio: CropAspectRatioPreset.original,
-          lockAspectRatio: false,
-        ),
-        IOSUiSettings(
-          minimumAspectRatio: 1.0,
-        ),]
+        uiSettings: [
+          AndroidUiSettings(
+            toolbarTitle: 'Crop',
+            toolbarColor: Colors.deepOrange,
+            toolbarWidgetColor: Colors.white,
+            initAspectRatio: CropAspectRatioPreset.original,
+            lockAspectRatio: false,
+          ),
+          IOSUiSettings(
+            minimumAspectRatio: 1.0,
+          ),
+        ],
       );
 
       if (croppedFile != null) {
@@ -108,6 +110,21 @@ class _ImageEditingPageState extends State<ImageEditingPage> {
               onSelect: () {
                 // Handle the select action here
                 Navigator.of(context).pop(); // Close the popup
+              },
+              onButton1Pressed: () {
+                // Implement the action for button 1
+              },
+              onButton2Pressed: () {
+                // Implement the action for button 2
+              },
+              onButton3Pressed: () {
+                // Implement the action for button 3
+              },
+              onButton4Pressed: () {
+                // Implement the action for button 4
+              },
+              onButton5Pressed: () {
+                // Implement the action for button 5
               },
             );
           },
