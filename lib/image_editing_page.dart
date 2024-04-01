@@ -1,16 +1,16 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, library_private_types_in_public_api
 
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
 import 'package:image_cropper/image_cropper.dart';
-import 'custom_popup.dart'; // Import the CustomPopup widget
+import 'custom_popup.dart';
 
 class ImageEditingPage extends StatefulWidget {
   final String imagePath;
 
-  const ImageEditingPage({Key? key, required this.imagePath}) : super(key: key);
+  const ImageEditingPage({super.key, required this.imagePath});
 
   @override
   _ImageEditingPageState createState() => _ImageEditingPageState();
@@ -18,7 +18,7 @@ class ImageEditingPage extends StatefulWidget {
 
 class _ImageEditingPageState extends State<ImageEditingPage> {
   late Image rotatedImage;
-  int rotationAngle = 0; // Current rotation angle, initially 0 degrees
+  int rotationAngle = 0;
 
   @override
   void initState() {
@@ -43,7 +43,7 @@ class _ImageEditingPageState extends State<ImageEditingPage> {
             tooltip: 'Rotate Right',
             onPressed: () {
               setState(() {
-                rotationAngle += 90; // Increment rotation angle by 90 degrees
+                rotationAngle += 90;
                 rotatedImage = Image.memory(rotateImage(
                     Image.file(File(widget.imagePath)), rotationAngle));
               });
@@ -97,7 +97,6 @@ class _ImageEditingPageState extends State<ImageEditingPage> {
       );
 
       if (croppedFile != null) {
-        // Pass the cropped image path back to the home page
         Navigator.pop(context, croppedFile.path);
         // Show the custom popup
         showDialog(
@@ -108,23 +107,22 @@ class _ImageEditingPageState extends State<ImageEditingPage> {
                 Navigator.of(context).pop();
               },
               onSelect: () {
-                // Handle the select action here
-                Navigator.of(context).pop(); // Close the popup
+                Navigator.of(context).pop();
               },
               onButton1Pressed: () {
-                // Implement the action for button 1
+                // 
               },
               onButton2Pressed: () {
-                // Implement the action for button 2
+                // 
               },
               onButton3Pressed: () {
-                // Implement the action for button 3
+                // 
               },
               onButton4Pressed: () {
-                // Implement the action for button 4
+                // 
               },
               onButton5Pressed: () {
-                // Implement the action for button 5
+                // 
               },
             );
           },
@@ -139,8 +137,8 @@ class _ImageEditingPageState extends State<ImageEditingPage> {
     final img.Image imgSrc =
         img.decodeImage(File(widget.imagePath).readAsBytesSync())!;
     final img.Image rotatedImg = img.copyRotate(imgSrc,
-        angle: angle); // Rotate the image by the specified angle
+        angle: angle);
     return Uint8List.fromList(
-        img.encodePng(rotatedImg)); // Convert the rotated image to memory
+        img.encodePng(rotatedImg));
   }
 }

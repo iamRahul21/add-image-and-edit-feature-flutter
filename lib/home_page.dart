@@ -14,7 +14,7 @@ class MyHomePage extends StatefulWidget {
 
 
 class _MyHomePageState extends State<MyHomePage> {
-  String _selectedImagePath = ''; // Store the selected image file path
+  String _selectedImagePath = '';
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
             color: Colors.black,
           ),
           onPressed: () {
-            exit(0); // Use exit(0) to close the app
+            exit(0);
           },
         ),
       ),
@@ -63,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         showImagePickerDialog(context, (imagePath) {
                           setState(() {
                             _selectedImagePath =
-                                imagePath; // Update the selected image file path
+                                imagePath;
                           });
                         });
                       },
@@ -89,10 +89,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: _selectedImagePath
-                        .isNotEmpty // Check if an image is selected
+                        .isNotEmpty 
                     ? Image.file(
                         File(_selectedImagePath),
-                        fit: BoxFit.cover, // Image fills the container width
+                        fit: BoxFit.cover, 
                       )
                     : const Center(
                         child: Text(

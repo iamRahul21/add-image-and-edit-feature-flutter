@@ -10,7 +10,7 @@ class CustomPopup extends StatelessWidget {
   final VoidCallback onButton5Pressed;
 
   const CustomPopup({
-    Key? key,
+    super.key,
     required this.onClose,
     required this.onSelect,
     required this.onButton1Pressed,
@@ -18,7 +18,7 @@ class CustomPopup extends StatelessWidget {
     required this.onButton3Pressed,
     required this.onButton4Pressed,
     required this.onButton5Pressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

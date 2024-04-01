@@ -10,12 +10,10 @@ Future<void> showImagePickerDialog(
   final pickedFile = await picker.pickImage(source: ImageSource.gallery);
 
   if (pickedFile != null) {
-    // Handle the picked image file
     print('Image picked: ${pickedFile.path}');
     onImageSelected(pickedFile
-        .path); // Pass the selected image file path to the callback function
+        .path); 
 
-    // Navigate to the ImageEditingPage and pass the selected image path as a parameter
     final croppedImagePath = await Navigator.push(
       context,
       MaterialPageRoute(
@@ -24,11 +22,9 @@ Future<void> showImagePickerDialog(
     );
 
     if (croppedImagePath != null) {
-      // Pass the cropped image path back to the caller
       onImageSelected(croppedImagePath);
     }
   } else {
-    // User canceled image picking
     print('User canceled image picking');
   }
 }

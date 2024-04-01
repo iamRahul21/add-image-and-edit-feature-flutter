@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
               builder: (context) => MyHomePage(
                 title: 'Add Image/Icon',
                 navigateToUploadPopup: (imagePath) {
-                  // Handle navigateToUploadPopup action here
+                  // 
                 },
               ),
             );
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
               builder: (context) => MyHomePage(
                 title: 'Add Image/Icon',
                 navigateToUploadPopup: (imagePath) {
-                  // Handle navigateToUploadPopup action here
+                  // 
                 },
               ),
             );
